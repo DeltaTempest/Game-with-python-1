@@ -21,7 +21,12 @@ class Game:
         cls.new_event.player_name = player_name #setting up nama player pada objek new_event 
         del player_name 
         
-        cls.new_event.opening_event() #menjalankan opening event
+        num = cls.new_event.opening_event() #menjalankan opening event
+        if num == 0:
+            return
+        del num
+        
+        
         
     @classmethod
     def first_time_initialize(cls):
@@ -51,6 +56,4 @@ class Game:
 
       
         
-    @staticmethod
-    def __divided_lines():
-        return f"====================================="   
+       

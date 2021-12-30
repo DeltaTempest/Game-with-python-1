@@ -1,6 +1,7 @@
 """
 Class Event adalah class yang mengisi cerita, terkait hal yang terjadi pada game dan mendisplaynya
 """
+from os import times_result
 from armor import Armor
 from player import Player
 from textdisplay import TextDisplay
@@ -23,27 +24,43 @@ class Event(TextDisplay):
         print(self.display_text.on_opening_txt(self.player_name))
         while True:
             print(self.display_text.loop_on_opening_txt())
-            number = int(input("Insert your number: "))
+            word = str(input("Your answer: "))
             print(f"\n{self.display_text.divided_lines}")
-            if number == 1:
-                self.first_story_explain()
+            if word == "1":
+                #show prologue story
+                print(self.display_text.prolouge_story)
                 break
                 
-            elif number == 2:
+            elif word == "2":
+                #show player status
                 self.show_player_status()
                 continue
                 
-            elif number == 3:
+            elif word == "3":
+                #begin the game
+                
                 pass
+            elif word == "q" or word == "Q" or word == "Quit" or word == "quit":
+                #quitting
+                print(self.display_text.quiting_games_txt)
+                return 0
             else:
-               
                 continue
                 pass
         
         pass
     
     def show_player_status(self):
-        print(self.display_text.player_status_no_eq_txt(self.player_name, self.player_health, self.player_attack))
+        while True:
+            print(self.display_text.player_status_no_eq_txt(self.player_name, self.player_health, self.player_attack))
+            print(f"{self.display_text.continue_or_not}\n")
+            word = str(input("Input yes or no: "))
+            print(self.display_text.divided_lines)
+            if word == "yes" or word == "Yes":
+                break
+            elif word == "no" or word == "No":
+                continue
+            break
         pass
     def first_story_explain(self):
         pass
