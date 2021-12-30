@@ -1,60 +1,55 @@
 """
-Game class adalah class yang mengatur jalan cerita dan display dari text dalam game ini
+Game class adalah class yang mengatur jalan cerita dalam game ini
 """
+from event import Event
 from player import Player
 from weapon import Weapon
 from armor import Armor
 
 class Game:
-    player = Player("None", 0, 10, 1)
+    new_player = None
+    knife_weapon = None
+    leather_armor = None
+    new_event = None
     @classmethod
     def start(cls):
-        fist = Weapon("Fist",1)
+        cls.first_time_initialize() #menginisialisasi variabel class
+        #menginisialisasi objek new_event 
+        cls.new_event = Event(cls.new_player.health, cls.new_player.attack, cls.new_player.weapon, cls.new_player.armor)
+        player_name = cls.new_event.starting_game() #menjalankan starting game function 
+        cls.new_player.name = player_name #setting up nama player ke objek new_player
+        cls.new_event.player_name = player_name #setting up nama player pada objek new_event 
+        del player_name 
         
+        cls.new_event.opening_event() #menjalankan opening event
         
-        while True:
-            cls.__opening_event()
-            
-            break
     @classmethod
-    def __opening_event(cls):
-        print(f"""
-{cls.__divided_lines()}
-Welcome to rpg text games!""")
+    def first_time_initialize(cls):
+        #initialize event
+         
+        #initialize player
+        cls.new_player = Player("None", 1, 10, 0)
+        """
+        Player_attack = 1
+        player_health = 10
+        player_defense = 0
+        player_weapon = None
+        player_armor = None
+        """
+        #initialize enemy
+        #initialize Weapon 
+        cls.knife_weapon = Weapon("Knife", 2)
+        #initialize armor
+        cls.leather_armor = Armor("Leather Armor", 1)
         
-        while True:
-            
-            print(f"""Please select one of the option
-1. The story
-2. Status
-3. Begin the journey
-{cls.__divided_lines()}
-""")
-            
-            num = int(input("Your number: "))
-            if num == 1:
-                cls.__the_story()
-                continue
-            elif num == 2:
-            
-                pass
-            elif num == 3:
-                return
-                pass       
-            else:
-                
-                print(f"""
-{cls.__divided_lines()}
-Please insert the right number!
-{cls.__divided_lines()}
-""")
-                pass
+        
+        
+        
+   
     
     
-    
-    @staticmethod
-    def __the_story():
-        pass
+
+      
         
     @staticmethod
     def __divided_lines():

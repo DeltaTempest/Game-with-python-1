@@ -11,6 +11,8 @@ class Player:
         self.__defense = defense
         self.__weapon = None
         self.__armor = None
+    
+        
         
         
     @property
@@ -19,6 +21,9 @@ class Player:
     @property
     def name(self):
         return self.__name
+    @name.setter
+    def name(self, name):
+        self.__name = name
     
     @property
     def health(self):
